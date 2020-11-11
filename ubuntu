@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo sed -i "/^# deb.*multiverse/ s/^# //" /etc/apt/sources.list
 
 sudo apt-get update
@@ -33,3 +35,16 @@ sudo usermod -aG docker your-user
 
 docker volume create portainer_data	
 docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+
+echo -n "New Hostname? > "
+read hostname
+hostnamectl set-hostname $hostname
+
+echo -n "New Username?"
+read username
+groupadd $username
+usermod -d /home/$username -m -g $username -l $username
+
+echo -n "New Password?"
+read password
+sudo password $username $password
