@@ -1,10 +1,10 @@
 #!/bin/sh
 
-sudo apt-get update
-sudo apt-get remove -y docker docker-engine docker.io containerd runc
-sudo apt-get update
+sudo apt update
+sudo apt remove -y docker docker-engine docker.io containerd runc
+sudo apt update
 
-sudo apt-get install -y\
+sudo apt install -y\
 apt-transport-https \
 ca-certificates \
 curl \
@@ -18,8 +18,9 @@ sudo add-apt-repository \
 $(lsb_release -cs) \
 stable"
 
-sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+sudo apt install -y docker-compose
 
 echo -n "Username?"
 read username
