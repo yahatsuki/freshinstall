@@ -12,3 +12,5 @@ usermod -d /home/$username -m -g $username -l $username
 echo -n "New Password?"
 read password
 sudo password $username $password
+
+reboot
