@@ -1,3 +1,5 @@
+#!/bin/sh
+
 sudo apt-get update
 sudo apt-get remove -y docker docker-engine docker.io containerd runc
 sudo apt-get update
