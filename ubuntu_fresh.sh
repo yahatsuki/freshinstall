@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 sudo sed -i "/^# deb.*multiverse/ s/^# //" /etc/apt/sources.list
 
