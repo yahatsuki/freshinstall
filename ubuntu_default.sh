@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo -n "New Hostname? > "
+echo -n "New Hostname?"
 read hostname
 sudo hostnamectl set-hostname $hostname
 
@@ -11,6 +11,6 @@ sudo usermod -d /home/$username -m -g $username -l $username
 
 echo -n "New Password?"
 read password
-sudo password $username $password
+sudo passwd $username $password
 
 sudo reboot
