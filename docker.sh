@@ -4,12 +4,12 @@ sudo apt update
 sudo apt remove -y docker docker-engine docker.io containerd runc
 sudo apt update
 
-sudo apt install -y\
-apt-transport-https \
-ca-certificates \
-curl \
-gnupg-agent \
-software-properties-common
+sudo apt install \
+apt-transport-https -y\
+ca-certificates -y\
+curl -y\
+gnupg-agent -y\
+software-properties-common -y
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
@@ -22,9 +22,8 @@ sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo apt install -y docker-compose
 
+echo "---------------------------------------------------"
+echo
 echo -n "Username?"
 read username
 sudo usermod -a -G docker $username
-
-docker volume create portainer_data	
-docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
