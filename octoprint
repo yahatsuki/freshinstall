@@ -1,0 +1,26 @@
+#!/bin/sh
+
+sudo apt update
+sudo apt upgrade -y
+
+sudo apt update
+sudo apt install -y fail2ban
+sudo systemctl start fail2ban
+sudo systemctl enable fail2ban
+
+sudo apt update
+sudo apt install -y clamav clamav-daemon
+sudo systemctl stop clamav-freshclam
+sudo freshclam
+sudo mkdir /var/lib/clamav
+sudo systemctl start clamav-freshclam
+
+sudo apt install -y unattended-upgrades
+sudo /etc/init.d/unattended-upgrades start
+
+sudo apt install network-manager avrdude -y
+sudo remove ifupdown
+
+cp 01-network-card.yaml /etc/netplan/01-network-card.yaml
+
+reboot
