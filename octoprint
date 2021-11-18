@@ -21,6 +21,8 @@ sudo /etc/init.d/unattended-upgrades start
 sudo apt install network-manager avrdude -y
 sudo remove ifupdown
 
-cp 01-network-card.yaml /etc/netplan/01-network-card.yaml
+curl https://raw.githubusercontent.com/yahatsuki/ubuntu/main/01-network-card.yaml -o 01-network-card.yaml
+sudo mv /etc/netplan/* ~/backup/etc/netplan/
+sudo cp 01-network-card.yaml /etc/netplan/01-network-card.yaml
 
 reboot
