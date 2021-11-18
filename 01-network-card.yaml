@@ -1,0 +1,13 @@
+network:
+  version: 2
+  renderer: NetworkManager
+  wifis:
+          wlan0:
+                  dhcp4: no
+                  addresses: [192.168.0.10/24]
+                  gateway4: 192.168.0.1
+                  nameservers:
+                          addresses: [192.168.0.1,8.8.8.8]
+                  access-points:
+                          telenet-5268894:
+                                  password: horse theatre quiet dates
