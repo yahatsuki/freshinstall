@@ -18,11 +18,46 @@ sudo systemctl start clamav-freshclam
 sudo apt install -y unattended-upgrades
 sudo /etc/init.d/unattended-upgrades start
 
-sudo apt install network-manager avrdude -y
-sudo remove ifupdown
+sudo apt install  avrdude -y
 
-curl https://raw.githubusercontent.com/yahatsuki/ubuntu/main/01-network-card.yaml -o 01-network-card.yaml
-sudo mv /etc/netplan/* ~/backup/etc/netplan/
-sudo cp 01-network-card.yaml /etc/netplan/01-network-card.yaml
+echo "Installation done"
+echo "Beginning Configuration"
 
-reboot
+echo "---------------------------------------------------"
+echo "Host Settings"
+echo "---------------------------------------------------"
+while true; do
+    read -p "Do you want to change the hostname?" yn
+    case $yn in
+        [Yy]* ) read -p "New Hostname?" host; sudo hostname $host; echo "hostname changed succesfully"; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+while true; do
+    read -p "Do you want to change the password?" yn
+    case $yn in
+        [Yy]* ) read -p "New Password?" psw; sudo passwd $psw; echo "password changed succesfully"; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+echo "---------------------------------------------------"
+echo "Internet Settings"
+echo "---------------------------------------------------"
+echo -n "Interface"
+read iface
+echo -n "Static IP?"
+read IP
+echo -n "Subnet Mask?"
+read mask
+echo -n "Gateway?"
+read GW
+echo 'interface $iface' >> /etc/dhcpcd.conf
+echo 'static ip_address=$IP/$mask' >> /etc/dhcpcd.conf
+echo 'static routers=$GW' >> /etc/dhcpcd.conf
+echo 'static domain_name_servers=$GW 8.8.8.8' >> /etc/dhcpcd.conf
+echo 'interface $iface' >> /etc/dhcpcd.conf
+
+sudo reboot
