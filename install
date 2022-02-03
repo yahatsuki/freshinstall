@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo sed -i "/^# deb.*multiverse/ s/^# //" /etc/apt/sources.list
+#sudo sed -i "/^# deb.*multiverse/ s/^# //" /etc/apt/sources.list
 
 sudo apt-get update
 sudo apt-get upgrade -y
@@ -20,7 +20,7 @@ sudo systemctl start clamav-freshclam
 sudo apt-get install -y unattended-upgrades
 sudo /etc/init.d/unattended-upgrades start
 
-sudo apt-get install xe-guest-utilities
+#sudo apt-get install xe-guest-utilities
 
 reboot
 
